@@ -25,7 +25,7 @@
 
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="72"/>
+                    <RowDefinition Height="56"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
@@ -34,7 +34,7 @@
                        HorizontalAlignment="Left"
                        Foreground="White"
                        FontSize="22"
-                       Padding="20"/>
+                       Padding="20 20 20 0"/>
 
                 <ContentControl Grid.Row="1"
                                 Grid.Column="1"
@@ -47,13 +47,13 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="110"/>
+                    <RowDefinition Height="290"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0"  Margin="10, 10, 10, 0">
-                    <Border CornerRadius="12" Background="#0D1B2A" Height="190">
+                    <Border CornerRadius="12" Background="#0D1B2A" Height="100">
                         <Grid>
                             <TextBlock Text="Timer Area" Foreground="White" 
                                        Padding="10"/>
@@ -61,9 +61,9 @@
                     </Border>
                 </StackPanel>
                 <StackPanel Grid.Row="1"  Margin="10, 10, 10, 0">
-                    <Border CornerRadius="12" Background="#0D1B2A" Height="190">
+                    <Border CornerRadius="12" Background="#0D1B2A" Height="280">
                         <Grid>
-                            <TextBlock Text="Calendar Area" Foreground="White" 
+                            <TextBlock Text="Deadlines List" Foreground="White" 
                        Padding="10"/>
                         </Grid>
                     </Border>
