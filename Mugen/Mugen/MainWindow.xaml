@@ -9,7 +9,13 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        xmlns:viewModel="clr-namespace:Mugen.NVVM.ViewModel">
+    <!--KURWA TU ZLE WPISALEM WCZESNIEJ ZAMIAST MAINVIEWMODEL TO HOMEVIEWMODEL!-->
+    <Window.DataContext>
+        
+        <viewModel:MainViewModel/> 
+    </Window.DataContext>
     <Border Background="#1b263b" CornerRadius="12">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -22,29 +28,57 @@
                     <RowDefinition Height="72"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-            </Grid>
 
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="400"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="1" Background="#0D1B2A" Margin="10">
-                </StackPanel>
-            </Grid>
-            
-            
-
-            <TextBlock Text="Mugen"
+                <TextBlock Text="Mugen"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Foreground="White"
                        FontSize="22"
                        Padding="20"/>
-            
-            
+
+                <ContentControl Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="10"/>
+                <ContentControl Grid.Row="1"
+                Grid.Column="1"
+                Content="{Binding CurrentView}"/>
+            </Grid>
+
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0"  Margin="10, 10, 10, 0">
+                    <Border CornerRadius="12" Background="#0D1B2A" Height="190">
+                        <Grid>
+                            <TextBlock Text="Timer Area" Foreground="White" 
+                                       Padding="10"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="1"  Margin="10, 10, 10, 0">
+                    <Border CornerRadius="12" Background="#0D1B2A" Height="190">
+                        <Grid>
+                            <TextBlock Text="Calendar Area" Foreground="White" 
+                       Padding="10"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2"  Margin="10, 10, 10, 0">
+                    <Border CornerRadius="12" Background="#0D1B2A" Height="180">
+                        <Grid>
+                            <TextBlock Text="DragDrop Area" Foreground="White" 
+                                       Padding="10"/>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                
+            </Grid>
         </Grid>
-        
     </Border>
 </Window>
