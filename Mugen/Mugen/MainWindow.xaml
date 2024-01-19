@@ -10,11 +10,9 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        xmlns:viewModel="clr-namespace:Mugen.NVVM.ViewModel">
+        Name="MainWindowInstance" Tag="{Binding RelativeSource={RelativeSource Self}}">
     <!--KURWA TU ZLE WPISALEM WCZESNIEJ ZAMIAST MAINVIEWMODEL TO HOMEVIEWMODEL!-->
-    <Window.DataContext>
-        <viewModel:MainViewModel/> 
-    </Window.DataContext>
+
     <Border Background="#1b263b" CornerRadius="12">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -26,6 +24,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="56"/>
                     <RowDefinition/>
+                    <RowDefinition Height="52"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Mugen"
@@ -34,13 +33,45 @@
                        Foreground="White"
                        FontSize="22"
                        Padding="20 20 20 0"/>
+                <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+                    <StackPanel x:Name="tileStackPanel">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Margin" Value="10 10 0 0"/>
+                                <Setter Property="Width" Value="180"/>
+                                <Setter Property="Height" Value="180"/>
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="CornerRadius" Value="12"/>
+                            </Style>
+                        </StackPanel.Resources>
 
-                <ContentControl Grid.Row="1"
-                                Grid.Column="1"
-                                Margin="10"/>
-                <ContentControl Grid.Row="1"
-                Grid.Column="1"
-                Content="{Binding CurrentView}" Height="440" VerticalAlignment="Top"/>
+                        <Border>
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                    <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                                    <GradientStop Color="#3aa0ff" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid>
+                                <StackPanel>
+                                    <TextBlock Text="Task" FontSize="28" Margin="12" 
+          Foreground="white"/>
+
+                                    <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
+          Foreground="#E0E1DD"/>
+
+                                    <TextBlock Text="1/2" FontSize="28" Margin="0 54 12 0" Foreground="#E0E1DD"
+          FontWeight="Bold"
+          HorizontalAlignment="Right"/>
+
+                                </StackPanel>
+                            </Grid>
+
+                        </Border>
+                    </StackPanel>
+                    <Canvas x:Name="canvas"/>
+                </Grid>
+
                 <Grid Grid.Column="0" Grid.Row="2" Height="52" VerticalAlignment="Bottom">
                     <Grid Grid.Row="0" Grid.Column="0">
                         <StackPanel>
@@ -63,8 +94,11 @@
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Border CornerRadius="12" Background="#344e41" Width="62" Height="42" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 0 10">
                             <Button Width="62" Height="42" Content=" + " Background="Transparent" Foreground="White" 
-                            BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" 
-                            Command="{Binding DodajKafelekCommand}" />
+        BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"
+        Click="DodajKafelek_Click" />
+
+
+
 
                         </Border>
                     </Grid>
