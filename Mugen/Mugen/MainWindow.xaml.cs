@@ -36,8 +36,6 @@ namespace Mugen
         {
             InitializeComponent();
             CreateListOfTiles();
-
-
         }
         public void Add_Tile(object sender, RoutedEventArgs e)
         {
@@ -52,18 +50,6 @@ namespace Mugen
                     break;
                 }
             }
-            //if (i < ListOfTiles.Count && ListOfTiles[i].isUsed == false)
-            //{ 
-            //    ListOfTiles[i].tile.Visibility = Visibility.Visible;
-            //    ListOfTiles[i].TaskText.Text = textInputTask.Text;
-            //    ListOfTiles[i].DescriptionText.Text = textInputDescription.Text;
-            //    ListOfTiles[i].isUsed = true;
-            //    i++;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Co za dużo to nie zdrowo :)");
-            //}
         }
 
         public void CreateListOfTiles()

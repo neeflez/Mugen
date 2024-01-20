@@ -68,8 +68,6 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <!--KURWA TU ZLE WPISALEM WCZESNIEJ ZAMIAST MAINVIEWMODEL TO HOMEVIEWMODEL!-->
-
     <Border Background="#1b263b" CornerRadius="12">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -275,8 +273,6 @@
                                             </Grid>
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
                                                         Foreground="#E0E1DD" x:Name="DescriptionText6"/>
-
-
                                         </StackPanel>
                                     </Grid>
 
