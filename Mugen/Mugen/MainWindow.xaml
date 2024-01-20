@@ -102,16 +102,16 @@
                             </Style>
                         </StackPanel.Resources>
                         <Grid>
-                            <Grid Grid.Column="1" Grid.Row="0" Width="190" HorizontalAlignment="Left" x:Name="Tile1" Visibility="Visible">
-                            <Border>
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <Grid Grid.Column="1" Grid.Row="0" Width="190" HorizontalAlignment="Left" x:Name="Tile1" Visibility="Collapsed">
+                                <Border>
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                                             <GradientStop Color="#3aa0ff" Offset="0.0"/>
                                             <GradientStop Color="#1f7a8c" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <Grid>
-                                    <StackPanel>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid>
+                                        <StackPanel>
                                             <Grid>
                                                 <Grid Grid.Row="0" Grid.Column="0">
                                                     <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left" 
@@ -127,38 +127,38 @@
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
                                                    Foreground="#E0E1DD"/>
                                         </StackPanel>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                            <Grid Grid.Column="1" Grid.Row="0" Width="190" x:Name="Tile2" Visibility="Visible">
-                        <Border>
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="0" Width="190" x:Name="Tile2" Visibility="Collapsed">
+                                <Border>
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                                             <GradientStop Color="#fca311" Offset="0.0"/>
                                             <GradientStop Color="#f2c078" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <Grid>
-                                <StackPanel>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid>
+                                        <StackPanel>
                                             <Grid>
                                                 <Grid Grid.Row="0" Grid.Column="0">
-                                                    <TextBlock Text="Task" FontSize="28" Margin="12" 
+                                                    <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left"
                                                Foreground="white"/>
                                                 </Grid>
                                                 <Grid  Grid.Row="0" Grid.Column="1">
                                                     <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
-                Background="#f28f3b" Foreground="White" BorderThickness="0" 
-                HorizontalAlignment="Right" VerticalAlignment="Top"
-                Margin="10 10 10 10" x:Name="Delete2"/>
+                                                            Background="#f28f3b" Foreground="White" BorderThickness="0" 
+                                                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                            Margin="10 10 10 10" x:Name="Delete2"/>
                                                 </Grid>
                                             </Grid>
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
                                                Foreground="#E0E1DD"/>
-                                </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+
+                                </Border>
                             </Grid>
-                            
-                        </Border>
-                         </Grid>
                             <Grid Grid.Column="2" Grid.Row="0" Width="190" HorizontalAlignment="Right" x:Name="Tile3" Visibility="Collapsed">
                                 <Border>
                                     <Border.Background>
@@ -169,11 +169,21 @@
                                     </Border.Background>
                                     <Grid>
                                         <StackPanel>
-                                            <TextBlock Text="Task" FontSize="28" Margin="12" 
-                       Foreground="white"/>
+                                            <Grid>
+                                                <Grid Grid.Row="0" Grid.Column="0">
+                                                    <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left" 
+                                                                Foreground="white"/>
+                                                </Grid>
+                                                <Grid  Grid.Row="0" Grid.Column="1">
+                                                    <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
+                                                            Background="#c81d25" Foreground="White" BorderThickness="0" 
+                                                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                            Margin="10 10 10 10" x:Name="Delete3"/>
+                                                </Grid>
+                                            </Grid>
 
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
-                       Foreground="#E0E1DD"/>
+                                                        Foreground="#E0E1DD"/>
 
 
                                         </StackPanel>
@@ -183,47 +193,66 @@
                         </Grid>
                         <Grid>
                             <Grid Grid.Column="2" Grid.Row="1" Width="190" HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="Tile4" Visibility="Collapsed">
-                            <Border>
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <Border>
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                                             <GradientStop Color="#57cc99" Offset="0.0"/>
                                             <GradientStop Color="#95d5b2" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <Grid>
-                                    <StackPanel>
-                                        <TextBlock Text="Task" FontSize="28" Margin="12" 
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid>
+                                        <StackPanel>
+                                            <Grid>
+                                                <Grid Grid.Row="0" Grid.Column="0">
+                                                    <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left"
                                                    Foreground="white"/>
-
-                                        <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
+                                                </Grid>
+                                                <Grid  Grid.Row="0" Grid.Column="1">
+                                                    <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
+                                                            Background="#52b788" Foreground="White" BorderThickness="0" 
+                                                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                            Margin="10 10 10 10" x:Name="Delete4"/>
+                                                </Grid>
+                                            </Grid>
+                                            <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
                                                    Foreground="#E0E1DD"/>
 
 
-                                    </StackPanel>
-                                </Grid>
+                                        </StackPanel>
+                                    </Grid>
 
-                            </Border>
-                        </Grid>
+                                </Border>
+                            </Grid>
                             <Grid Grid.Column="2" Grid.Row="1" Width="190" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="Tile5" Visibility="Collapsed">
-                            <Border>
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                                <Border>
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                                             <GradientStop Color="#9f86c0" Offset="0.0"/>
                                             <GradientStop Color="#be95c4" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <Grid>
-                                    <StackPanel>
-                                        <TextBlock Text="Task" FontSize="28" Margin="12" 
-                           Foreground="white"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid>
+                                        <StackPanel>
+                                            <Grid>
+                                                <Grid Grid.Row="0" Grid.Column="0">
+                                                    <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left"
+                                                                Foreground="white"/>
+                                                </Grid>
+                                                <Grid  Grid.Row="0" Grid.Column="1">
+                                                    <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
+                                                            Background="#e0aaff" Foreground="White" BorderThickness="0" 
+                                                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                            Margin="10 10 10 10" x:Name="Delete5"/>
+                                                </Grid>
+                                            </Grid>
 
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
-                           Foreground="#E0E1DD"/>
+                                                        Foreground="#E0E1DD"/>
                                         </StackPanel>
-                                </Grid>
+                                    </Grid>
 
-                            </Border>
-                        </Grid>
+                                </Border>
+                            </Grid>
                             <Grid Grid.Column="3" Grid.Row="1" Width="190" HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="Tile6" Visibility="Collapsed">
                                 <Border>
                                     <Border.Background>
@@ -234,9 +263,18 @@
                                     </Border.Background>
                                     <Grid>
                                         <StackPanel>
-                                            <TextBlock Text="Task" FontSize="28" Margin="12" 
+                                            <Grid>
+                                                <Grid Grid.Row="0" Grid.Column="0">
+                                                    <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left"
                                                        Foreground="white"/>
-
+                                                </Grid>
+                                                <Grid  Grid.Row="0" Grid.Column="1">
+                                                    <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
+                                                            Background="#b2967d" Foreground="White" BorderThickness="0" 
+                                                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                            Margin="10 10 10 10" x:Name="Delete6"/>
+                                                </Grid>
+                                            </Grid>
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
                                                         Foreground="#E0E1DD"/>
 
@@ -279,7 +317,7 @@
                     </Grid>
                 </Grid>
             </Grid>
-            
+
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>

@@ -46,7 +46,7 @@ namespace Mugen
             }
             else
             {
-                MessageBox.Show("Chyba masz co robić. Nie dodawaj sobie obwiązków bo wykitujesz :)");
+                MessageBox.Show("Nie dodawaj sobie obwiązków bo wykitujesz :)");
             }
         }
 
