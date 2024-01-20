@@ -29,6 +29,7 @@ namespace Mugen
         Tile Tile_4;
         Tile Tile_5;
         Tile Tile_6;
+        int k = 0;
         List<Tile> ListOfTiles = new List<Tile>();
         int i = 0;
         public MainWindow()
@@ -40,47 +41,59 @@ namespace Mugen
         }
         public void Add_Tile(object sender, RoutedEventArgs e)
         {
-            if (i < ListOfTiles.Count)
-            { 
-                ListOfTiles[i].tile.Visibility = Visibility.Visible;
-                ListOfTiles[i].TaskText.Text = textInputTask.Text;
-                ListOfTiles[i].DescriptionText.Text = textInputDescription.Text;
-                i++;
-            }
-            else
+            for(int l = 0; l < ListOfTiles.Count; l++)
             {
-                MessageBox.Show("Co za dużo to nie zdrowo :)");
+                if (ListOfTiles[l].isUsed == false)
+                {
+                    ListOfTiles[l].tile.Visibility = Visibility.Visible;
+                    ListOfTiles[l].TaskText.Text = textInputTask.Text;
+                    ListOfTiles[l].DescriptionText.Text = textInputDescription.Text;
+                    ListOfTiles[l].isUsed = true;
+                    break;
+                }
             }
+            //if (i < ListOfTiles.Count && ListOfTiles[i].isUsed == false)
+            //{ 
+            //    ListOfTiles[i].tile.Visibility = Visibility.Visible;
+            //    ListOfTiles[i].TaskText.Text = textInputTask.Text;
+            //    ListOfTiles[i].DescriptionText.Text = textInputDescription.Text;
+            //    ListOfTiles[i].isUsed = true;
+            //    i++;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Co za dużo to nie zdrowo :)");
+            //}
         }
 
         public void CreateListOfTiles()
         {
-            Tile_1 = new Tile("asd", "dsad");
+            Tile_1 = new Tile("asd", "dsad", false);
             Tile_1.tile = Tile1;
             Tile_1.TaskText = TaskText1;
             Tile_1.DescriptionText = DescriptionText1;
 
-            Tile_2 = new Tile("asd", "dsad");
+            Tile_2 = new Tile("asd", "dsad", false);
             Tile_2.tile = Tile2;
             Tile_2.TaskText = TaskText2;
             Tile_2.DescriptionText = DescriptionText2;
 
-            Tile_3 = new Tile("asd", "dsad");
+            Tile_3 = new Tile("asd", "dsad", false);
             Tile_3.tile = Tile3;
             Tile_3.TaskText = TaskText3;
             Tile_3.DescriptionText = DescriptionText3;
 
-            Tile_4 = new Tile("asd", "dsad");
+            Tile_4 = new Tile("asd", "dsad", false);
             Tile_4.tile = Tile4;
             Tile_4.TaskText = TaskText4;
             Tile_4.DescriptionText = DescriptionText4;
 
-            Tile_5 = new Tile("asd", "dsad");
+            Tile_5 = new Tile("asd", "dsad", false);
             Tile_5.tile = Tile5;
             Tile_5.TaskText = TaskText5;
             Tile_5.DescriptionText = DescriptionText5;
 
-            Tile_6 = new Tile("asd", "dsad");
+            Tile_6 = new Tile("asd", "dsad", false);
             Tile_6.tile = Tile6;
             Tile_6.TaskText = TaskText6;
             Tile_6.DescriptionText = DescriptionText6;
@@ -95,9 +108,18 @@ namespace Mugen
                 if (xNameProperty != null)
                 {
                     string xNameValue = xNameProperty.GetValue(frameworkElement) as string;
-                    int j = xNameValue[xNameValue.Length-1] - 49;
+                    int j = xNameValue[xNameValue.Length - 1] - 49;
+                    if (j < k)
+                    {
+                        i = j;
+                    }
+                    else
+                    {
+                        i = k;
+                    }
+                    k = j;
                     ListOfTiles[j].tile.Visibility = Visibility.Collapsed;
-                    i--;
+                    ListOfTiles[j].isUsed = false;
                 }
             }
         }
@@ -106,13 +128,15 @@ namespace Mugen
     {
         string task;
         string description;
+        public bool isUsed;
         public Grid tile;
         public TextBlock TaskText;
         public TextBlock DescriptionText;
-        public Tile(string _task, string _description)
+        public Tile(string _task, string _description, bool _isUsed)
         {
             this.description = _description;
             this.task = _task;
+            this.isUsed = _isUsed;
         }
     }
 
