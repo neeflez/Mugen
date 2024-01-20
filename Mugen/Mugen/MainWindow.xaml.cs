@@ -118,6 +118,11 @@ namespace Mugen
                 }
             }
         }
+
+        public void Shutdown_app(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
     public class Tile
     {
