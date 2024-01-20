@@ -115,17 +115,18 @@
                                             <Grid>
                                                 <Grid Grid.Row="0" Grid.Column="0">
                                                     <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left" 
-                                                                Foreground="white"/>
+                                                                Foreground="white" x:Name="TaskText1"/>
                                                 </Grid>
                                                 <Grid  Grid.Row="0" Grid.Column="1">
                                                     <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
                                                             Background="#3aafff" Foreground="White" BorderThickness="0" 
                                                             HorizontalAlignment="Right" VerticalAlignment="Top"
-                                                            Margin="10 10 10 10" x:Name="Delete1"/>
+                                                            Margin="10 10 10 10" x:Name="Delete1" 
+                                                            Click="DeleteTile"/>
                                                 </Grid>
                                             </Grid>
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
-                                                   Foreground="#E0E1DD"/>
+                                                   Foreground="#E0E1DD" x:Name="DescriptionText1"/>
                                         </StackPanel>
                                     </Grid>
                                 </Border>
@@ -143,17 +144,17 @@
                                             <Grid>
                                                 <Grid Grid.Row="0" Grid.Column="0">
                                                     <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left"
-                                               Foreground="white"/>
+                                               Foreground="white" x:Name="TaskText2"/>
                                                 </Grid>
                                                 <Grid  Grid.Row="0" Grid.Column="1">
                                                     <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
                                                             Background="#f28f3b" Foreground="White" BorderThickness="0" 
                                                             HorizontalAlignment="Right" VerticalAlignment="Top"
-                                                            Margin="10 10 10 10" x:Name="Delete2"/>
+                                                            Margin="10 10 10 10" x:Name="Delete2" Click="DeleteTile"/>
                                                 </Grid>
                                             </Grid>
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
-                                               Foreground="#E0E1DD"/>
+                                               Foreground="#E0E1DD" x:Name="DescriptionText2"/>
                                         </StackPanel>
                                     </Grid>
 
@@ -172,20 +173,17 @@
                                             <Grid>
                                                 <Grid Grid.Row="0" Grid.Column="0">
                                                     <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left" 
-                                                                Foreground="white"/>
+                                                                Foreground="white" x:Name="TaskText3"/>
                                                 </Grid>
                                                 <Grid  Grid.Row="0" Grid.Column="1">
                                                     <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
                                                             Background="#c81d25" Foreground="White" BorderThickness="0" 
                                                             HorizontalAlignment="Right" VerticalAlignment="Top"
-                                                            Margin="10 10 10 10" x:Name="Delete3"/>
+                                                            Margin="10 10 10 10" x:Name="Delete3" Click="DeleteTile"/>
                                                 </Grid>
                                             </Grid>
-
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
-                                                        Foreground="#E0E1DD"/>
-
-
+                                                        Foreground="#E0E1DD" x:Name="DescriptionText3"/>
                                         </StackPanel>
                                     </Grid>
                                 </Border>
@@ -205,17 +203,17 @@
                                             <Grid>
                                                 <Grid Grid.Row="0" Grid.Column="0">
                                                     <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left"
-                                                   Foreground="white"/>
+                                                   Foreground="white" x:Name="TaskText4"/>
                                                 </Grid>
                                                 <Grid  Grid.Row="0" Grid.Column="1">
                                                     <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
                                                             Background="#52b788" Foreground="White" BorderThickness="0" 
                                                             HorizontalAlignment="Right" VerticalAlignment="Top"
-                                                            Margin="10 10 10 10" x:Name="Delete4"/>
+                                                            Margin="10 10 10 10" x:Name="Delete4" Click="DeleteTile"/>
                                                 </Grid>
                                             </Grid>
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
-                                                   Foreground="#E0E1DD"/>
+                                                   Foreground="#E0E1DD" x:Name="DescriptionText4"/>
 
 
                                         </StackPanel>
@@ -236,18 +234,18 @@
                                             <Grid>
                                                 <Grid Grid.Row="0" Grid.Column="0">
                                                     <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left"
-                                                                Foreground="white"/>
+                                                                Foreground="white" x:Name="TaskText5"/>
                                                 </Grid>
                                                 <Grid  Grid.Row="0" Grid.Column="1">
                                                     <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
                                                             Background="#e0aaff" Foreground="White" BorderThickness="0" 
                                                             HorizontalAlignment="Right" VerticalAlignment="Top"
-                                                            Margin="10 10 10 10" x:Name="Delete5"/>
+                                                            Margin="10 10 10 10" x:Name="Delete5" Click="DeleteTile"/>
                                                 </Grid>
                                             </Grid>
 
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
-                                                        Foreground="#E0E1DD"/>
+                                                        Foreground="#E0E1DD" x:Name="DescriptionText5"/>
                                         </StackPanel>
                                     </Grid>
 
@@ -266,17 +264,17 @@
                                             <Grid>
                                                 <Grid Grid.Row="0" Grid.Column="0">
                                                     <TextBlock Text="Task" FontSize="28" Margin="12" Width="120" HorizontalAlignment="Left"
-                                                       Foreground="white"/>
+                                                       Foreground="white" x:Name="TaskText6"/>
                                                 </Grid>
                                                 <Grid  Grid.Row="0" Grid.Column="1">
                                                     <Button Style="{DynamicResource RoundedCorners}" Content="Delete" Width="42" 
                                                             Background="#b2967d" Foreground="White" BorderThickness="0" 
                                                             HorizontalAlignment="Right" VerticalAlignment="Top"
-                                                            Margin="10 10 10 10" x:Name="Delete6"/>
+                                                            Margin="10 10 10 10" x:Name="Delete6" Click="DeleteTile"/>
                                                 </Grid>
                                             </Grid>
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
-                                                        Foreground="#E0E1DD"/>
+                                                        Foreground="#E0E1DD" x:Name="DescriptionText6"/>
 
 
                                         </StackPanel>
@@ -295,7 +293,7 @@
                             <Border CornerRadius="12" Background="#0d1b2a" Width="220" HorizontalAlignment="Left" Margin="15 0 0 0">
                                 <TextBox Name="textInputTask" HorizontalAlignment="Left" VerticalAlignment="Top" 
                                  Width="200" Margin="10" Foreground="White" Text="Task" FontSize="16"
-                                 Background="#0d1b2a" Padding="1" BorderThickness="0" />
+                                 Background="#0d1b2a" Padding="1" BorderThickness="0"/>
                             </Border>
                         </StackPanel>
                     </Grid>
@@ -317,8 +315,6 @@
                     </Grid>
                 </Grid>
             </Grid>
-
-
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="110"/>
