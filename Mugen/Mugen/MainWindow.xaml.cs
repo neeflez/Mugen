@@ -30,6 +30,7 @@ namespace Mugen
         Tile Tile_5;
         Tile Tile_6;
         int k = 0;
+        public bool IsPlaceForTile = true;
         List<Tile> ListOfTiles = new List<Tile>();
         int i = 0;
         public MainWindow()
@@ -39,6 +40,7 @@ namespace Mugen
         }
         public void Add_Tile(object sender, RoutedEventArgs e)
         {
+            IsPlaceForTile = true;
             for(int l = 0; l < ListOfTiles.Count; l++)
             {
                 if (ListOfTiles[l].isUsed == false)
@@ -47,8 +49,13 @@ namespace Mugen
                     ListOfTiles[l].TaskText.Text = textInputTask.Text;
                     ListOfTiles[l].DescriptionText.Text = textInputDescription.Text;
                     ListOfTiles[l].isUsed = true;
+                    IsPlaceForTile = false;
                     break;
                 }
+            }
+            if (IsPlaceForTile)
+            {
+                MessageBox.Show("co za dużo to nie zdrowo :)");
             }
         }
 
@@ -93,8 +100,10 @@ namespace Mugen
                 var xNameProperty = frameworkElement.GetType().GetProperty("Name");
                 if (xNameProperty != null)
                 {
+                    //parsing x:Name string from delete button to know which tile we have to delete
                     string xNameValue = xNameProperty.GetValue(frameworkElement) as string;
                     int j = xNameValue[xNameValue.Length - 1] - 49;
+                    //Saving smallest index of deleted tile so we know where to put one with add button
                     if (j < k)
                     {
                         i = j;
