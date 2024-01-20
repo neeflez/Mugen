@@ -431,7 +431,10 @@
                 <StackPanel Grid.Row="0"  Margin="0">
                     <Border CornerRadius="12" >
                         <Grid>
-                            <Button Style="{DynamicResource circlebutton}" Content="x" FontSize="10" Foreground="white" BorderThickness="0" Height="15" Width="15" HorizontalAlignment="Right" Margin="10" Background="red" Click="Shutdown_app"/>
+                            <Button Style="{DynamicResource circlebutton}" Content="" 
+                                    FontSize="10" Foreground="white" BorderThickness="0" 
+                                    Height="15" Width="15" HorizontalAlignment="Right" Margin="10" 
+                                    Background="red" Click="Shutdown_app"/>
                         </Grid>
                     </Border>
                 </StackPanel>
