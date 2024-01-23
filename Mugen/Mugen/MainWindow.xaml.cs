@@ -70,9 +70,9 @@ namespace Mugen
             tempList.Sort();
 
             ListOfDeadlines.Clear();
-            foreach (var deadline in tempList)
+            for (int o = 0; 0 < ListOfDeadlines.Count; o++)
             {
-                ListOfDeadlines.Add(deadline);
+                ListOfDeadlines[o] = tempList[o];
             }
         }
         public void Sortlist(object sender, RoutedEventArgs e)
