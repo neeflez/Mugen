@@ -184,20 +184,23 @@
                 <ColumnDefinition Width="600"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="56"/>
                     <RowDefinition/>
                     <RowDefinition Height="52"/>
                 </Grid.RowDefinitions>
-
+                <Grid>
                 <TextBlock Text="Mugen"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Left"
                        Foreground="White"
                        FontSize="22"
                        Padding="20 20 20 0"/>
+                </Grid>
                 <Grid Grid.Row="1" Grid.Column="1" Margin="10">
                     <StackPanel x:Name="tileStackPanel">
                         <StackPanel.Resources>
