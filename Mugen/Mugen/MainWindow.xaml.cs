@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -34,7 +36,7 @@ namespace Mugen
         int k = 0;
         public bool IsPlaceForTile = true;
         List<Tile> ListOfTiles = new List<Tile>();
-        ObservableCollection<Deadline> ListOfDeadlines = new ObservableCollection<Deadline>();
+        public BindingList<Deadline> ListOfDeadlines = new BindingList<Deadline>();
         int i = 0;
         public MainWindow()
         {
@@ -69,9 +71,15 @@ namespace Mugen
         }
         public void Sort(object sender, RoutedEventArgs e)
         {
-            ListOfDeadlines = new ObservableCollection<Deadline>(ListOfDeadlines.OrderBy(d => d));
+            List<Deadline> sortedList = new List<Deadline>(ListOfDeadlines);
+            sortedList.Sort();
 
-            DeadlinesList.ItemsSource = ListOfDeadlines;
+            // Aktualizacja oryginalnej listy za pomocą posortowanej listy
+            ListOfDeadlines.Clear();
+            foreach (var item in sortedList)
+            {
+                ListOfDeadlines.Add(item);
+            }
         }
 
         public void Add_Deadline(object sender, RoutedEventArgs e)
@@ -156,12 +164,17 @@ namespace Mugen
     {
         public DatePicker DeadlineTime;
         public TextBox DeadlineText;
+        
+        public Deadline(TextBox _deadlineText)
+        {
+            this.DeadlineText = _deadlineText;
+            this.DeadlineTime = new DatePicker { SelectedDate = DateTime.Now };
+        }
         public Deadline(TextBox _deadlineText, DatePicker _deadlineTime)
         {
             this.DeadlineText = _deadlineText;
             this.DeadlineTime = _deadlineTime;
         }
-
         public override string ToString()
         {
             return DeadlineText.Text + "\n" + DeadlineTime.SelectedDate.Value.ToString("dd.MM.yyyy");
