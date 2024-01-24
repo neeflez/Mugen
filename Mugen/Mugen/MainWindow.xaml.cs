@@ -139,6 +139,18 @@ namespace Mugen
         {
             ListOfTiles.Sort();
         }
+
+       private void ListBoxItem_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        // Pobierz zaznaczony element
+        ListBoxItem selectedListBoxItem = (ListBoxItem)DeadlinesList.SelectedItem;
+
+        if (selectedListBoxItem != null)
+        {
+                // Usuń zaznaczony element z ListBox
+                DeadlinesList.Items.Remove(selectedListBoxItem);
+        }
+    }
     }
 
 
@@ -162,38 +174,32 @@ namespace Mugen
     }
     public class Deadline : IComparable<Deadline>
     {
-        public DatePicker DeadlineTime;
-        public TextBox DeadlineText;
-        
-        public Deadline(TextBox _deadlineText)
-        {
-            this.DeadlineText = _deadlineText;
-            this.DeadlineTime = new DatePicker { SelectedDate = DateTime.Now };
-        }
-        public Deadline(TextBox _deadlineText, DatePicker _deadlineTime)
+        public TextBox DeadlineText { get; }
+        public DatePicker? DeadlineTime { get; }
+
+        public Deadline(TextBox _deadlineText, DatePicker? _deadlineTime)
         {
             this.DeadlineText = _deadlineText;
             this.DeadlineTime = _deadlineTime;
         }
+
         public override string ToString()
         {
-            return DeadlineText.Text + "\n" + DeadlineTime.SelectedDate.Value.ToString("dd.MM.yyyy");
+            return DeadlineText.Text + "\n" + (DeadlineTime?.SelectedDate?.ToString("dd.MM.yyyy") ?? "No date");
         }
-
 
         int IComparable<Deadline>.CompareTo(Deadline other)
         {
-            if (other == null || DeadlineTime.SelectedDate == null || other.DeadlineTime.SelectedDate == null)
+            if (other == null || DeadlineTime?.SelectedDate == null || other.DeadlineTime?.SelectedDate == null)
             {
                 return 0;
             }
             return DeadlineTime.SelectedDate.Value.CompareTo(other.DeadlineTime.SelectedDate.Value);
         }
+    }
 
 
-    }    
-    
-    
+
 
 
 }

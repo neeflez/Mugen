@@ -246,7 +246,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="56"/>
                     <RowDefinition Height="480"/>
-                    <RowDefinition Height="62"/>
+                    <RowDefinition Height="64"/>
                 </Grid.RowDefinitions>
                 <Grid x:Name="grdHeader" PreviewMouseLeftButtonDown="grdHeader_PreviewMouseLeftButtonDown" IsHitTestVisible="True" Background="Transparent">
 
@@ -520,7 +520,7 @@
                                         Height="20" Width="50" HorizontalAlignment="Right" 
                                         Background="#fb8500" Click="Sort"/>
                             </Border>
-                            <ListBox x:Name="DeadlinesList" Margin="10 20 10 10" Background="Transparent" Foreground="White" BorderThickness="0" FontSize="14" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                            <ListBox x:Name="DeadlinesList" Margin="10 20 10 10" MouseDoubleClick="ListBoxItem_DoubleClick" Background="Transparent" Foreground="White" BorderThickness="0" FontSize="14" d:ItemsSource="{d:SampleData ItemCount=5}" />
                         </Grid>
                     </Border>
                 </StackPanel>
