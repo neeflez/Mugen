@@ -42,7 +42,10 @@ namespace Mugen
             CreateListOfTiles();
             DeadlinesList.ItemsSource = ListOfDeadlines;
         }
-
+        private void grdHeader_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
         public void Add_Tile(object sender, RoutedEventArgs e)
         {
             IsPlaceForTile = true;
@@ -66,19 +69,11 @@ namespace Mugen
         }
         public void Sort(object sender, RoutedEventArgs e)
         {
-            List<Deadline> tempList = new List<Deadline>(ListOfDeadlines);
-            tempList.Sort();
+            ListOfDeadlines = new ObservableCollection<Deadline>(ListOfDeadlines.OrderBy(d => d));
 
-            ListOfDeadlines.Clear();
-            for (int o = 0; 0 < ListOfDeadlines.Count; o++)
-            {
-                ListOfDeadlines[o] = tempList[o];
-            }
+            DeadlinesList.ItemsSource = ListOfDeadlines;
         }
-        public void Sortlist(object sender, RoutedEventArgs e)
-        {
-            ListOfTiles.Sort();
-        }
+
         public void Add_Deadline(object sender, RoutedEventArgs e)
         {
             Deadline NewDeadline = new Deadline(DeadlineText, DeadLineDate);
@@ -175,9 +170,9 @@ namespace Mugen
 
         int IComparable<Deadline>.CompareTo(Deadline other)
         {
-            if (other == null)
+            if (other == null || DeadlineTime.SelectedDate == null || other.DeadlineTime.SelectedDate == null)
             {
-                return 1;
+                return 0;
             }
             return DeadlineTime.SelectedDate.Value.CompareTo(other.DeadlineTime.SelectedDate.Value);
         }

@@ -245,17 +245,18 @@
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="56"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="52"/>
+                    <RowDefinition Height="480"/>
+                    <RowDefinition Height="62"/>
                 </Grid.RowDefinitions>
-                <Grid>
+                <Grid x:Name="grdHeader" PreviewMouseLeftButtonDown="grdHeader_PreviewMouseLeftButtonDown" IsHitTestVisible="True" Background="Transparent">
 
                     <TextBlock Text="Mugen"
-                       VerticalAlignment="Top"
-                       HorizontalAlignment="Left"
-                       Foreground="White"
-                       FontSize="22"
-                       Padding="20 20 20 0"/>
+                               Width="900"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               Foreground="White"
+                               FontSize="22"
+                               Padding="20 20 20 0"/>
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="1" Margin="10">
                     <StackPanel x:Name="tileStackPanel">
@@ -290,14 +291,14 @@
                                                             HorizontalAlignment="Right" VerticalAlignment="Top"
                                                             Margin="10 10 10 10" x:Name="Delete1" 
                                                             Click="DeleteTile"/>
-                                                    
+
 
                                                 </Grid>
                                             </Grid>
                                             <TextBlock Text="Description" FontSize="16" Margin="12 0 0 0" 
                                                    Foreground="#E0E1DD" x:Name="DescriptionText1"/>
                                         </StackPanel>
-                                       
+
                                     </Grid>
                                 </Border>
                             </Grid>
@@ -452,10 +453,9 @@
                             </Grid>
                         </Grid>
                     </StackPanel>
-                    <Canvas x:Name="canvas"/>
                 </Grid>
 
-                <Grid Grid.Column="0" Grid.Row="2" Height="52" VerticalAlignment="Bottom">
+                <Grid Grid.Column="0" Grid.Row="2" Height="60" VerticalAlignment="Bottom">
                     <Grid Grid.Row="0" Grid.Column="0">
                         <StackPanel>
                             <Border CornerRadius="12" Background="#0d1b2a" Width="220" HorizontalAlignment="Left" Margin="15 0 0 0">
@@ -492,7 +492,8 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0"  Margin="0">
                     <Border CornerRadius="12" >
-                        <Grid>
+                        <Grid >
+                            <Grid x:Name="grdHeader2" PreviewMouseLeftButtonDown="grdHeader_PreviewMouseLeftButtonDown" IsHitTestVisible="True" Background="Transparent" Width="266" HorizontalAlignment="Left"></Grid>
                             <Button Style="{DynamicResource circlebutton}" Content="" 
                                     FontSize="10" Foreground="white" BorderThickness="0" 
                                     Height="15" Width="15" HorizontalAlignment="Right" Margin="10" 
