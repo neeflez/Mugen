@@ -27,6 +27,7 @@ namespace Mugen
 
     public partial class MainWindow : Window
     {
+        private bool isSortedAscending = true;
         int counter = 0;
         Tile Tile_1;
         Tile Tile_2;
@@ -71,31 +72,43 @@ namespace Mugen
         }
         public void Sort_deadline_list(object sender, RoutedEventArgs e)
         {
-            List<Deadline> List_of_deadlines = new List<Deadline>();
-            foreach(Deadline item in DeadlinesList.Items)
-            {
-                List_of_deadlines.Add(item);
-                //MessageBox.Show(item.ToString());
-            }
-            for (int p = 0; p < List_of_deadlines.Count - 1; p++)
-            {
-                for (int l = 0; l < List_of_deadlines.Count - 1 - p; l++)
-                {
-                    if (List_of_deadlines[l].CompareTo(List_of_deadlines[l + 1]) == 1)
-                    {
-                        Deadline temp = List_of_deadlines[l];
-                        List_of_deadlines[l] = List_of_deadlines[l + 1];
-                        List_of_deadlines[l + 1] = temp;
-                    }
-                }
-            }
+            List<Deadline> List_of_deadlines = new List<Deadline>(DeadlinesList.Items.Cast<Deadline>());
+
+            BubbleSort(List_of_deadlines);
+
             DeadlinesList.Items.Clear();
             foreach (var item in List_of_deadlines)
             {
-                
                 DeadlinesList.Items.Add(item);
             }
 
+            isSortedAscending = !isSortedAscending;
+        }
+        private void BubbleSort(List<Deadline> list)
+        {
+            int n = list.Count;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                bool swapped = false;
+
+                for (int j = 0; j < n - 1 - i; j++)
+                {
+                    int comparisonResult = list[j].CompareTo(list[j + 1]);
+
+                    if ((isSortedAscending && comparisonResult > 0) || (!isSortedAscending && comparisonResult < 0))
+                    {
+                        Deadline temp = list[j];
+                        list[j] = list[j + 1];
+                        list[j + 1] = temp;
+                        swapped = true;
+                    }
+                }
+                if (!swapped)
+                {
+                    break;
+                }
+            }
         }
 
         public void Add_Deadline(object sender, RoutedEventArgs e)
