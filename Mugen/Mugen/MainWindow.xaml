@@ -518,7 +518,7 @@
                                 <Button Style="{DynamicResource OneCornerRounded}" Content="sort" FontSize="12" 
                                         Foreground="white" BorderThickness="0" 
                                         Height="20" Width="50" HorizontalAlignment="Right" 
-                                        Background="#fb8500" Click="Sort"/>
+                                        Background="#fb8500" Click="Sort_deadline_list"/>
                             </Border>
                             <ListBox x:Name="DeadlinesList" Margin="10 20 10 10" MouseDoubleClick="ListBoxItem_DoubleClick" Background="Transparent" Foreground="White" BorderThickness="0" FontSize="14" d:ItemsSource="{d:SampleData ItemCount=5}" />
                         </Grid>

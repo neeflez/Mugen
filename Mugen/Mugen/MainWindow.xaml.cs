@@ -27,6 +27,7 @@ namespace Mugen
 
     public partial class MainWindow : Window
     {
+        
         Tile Tile_1;
         Tile Tile_2;
         Tile Tile_3;
@@ -42,7 +43,7 @@ namespace Mugen
         {
             InitializeComponent();
             CreateListOfTiles();
-            DeadlinesList.ItemsSource = ListOfDeadlines;
+            //DeadlinesList.ItemsSource = ListOfDeadlines;
         }
         private void grdHeader_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -66,26 +67,70 @@ namespace Mugen
             }
             if (IsPlaceForTile)
             {
-                MessageBox.Show("co za dużo to nie zdrowo :)");
+                MessageBox.Show("Everything in moderation :)");
             }
         }
-        public void Sort(object sender, RoutedEventArgs e)
+        public void Sort_deadline_list(object sender, RoutedEventArgs e)
         {
-            List<Deadline> sortedList = new List<Deadline>(ListOfDeadlines);
-            sortedList.Sort();
-
-            // Aktualizacja oryginalnej listy za pomocą posortowanej listy
-            ListOfDeadlines.Clear();
-            foreach (var item in sortedList)
+            List<Deadline> List_of_deadlines = new List<Deadline>();
+            foreach(Deadline item in DeadlinesList.Items)
             {
-                ListOfDeadlines.Add(item);
+                List_of_deadlines.Add(item);
+                MessageBox.Show(item.ToString());
             }
+            for (int p = 0; p < List_of_deadlines.Count - 1; p++)
+            {
+                for (int l = 0; l < List_of_deadlines.Count - 1 - p; l++)
+                {
+                    if (List_of_deadlines[l].CompareTo(List_of_deadlines[l + 1]) == 1)
+                    {
+                        // Swap elements if they are in the wrong order
+                        Deadline temp = List_of_deadlines[l];
+                        List_of_deadlines[l] = List_of_deadlines[l + 1];
+                        List_of_deadlines[l + 1] = temp;
+                    }
+                }
+            }
+            DeadlinesList.Items.Clear();
+            //MessageBox.Show(DeadlinesList.Items.ToString());
+            foreach (var item in List_of_deadlines)
+            {
+                
+                //DeadlinesList.Items.Add(item);
+            }
+
         }
 
         public void Add_Deadline(object sender, RoutedEventArgs e)
         {
-            Deadline NewDeadline = new Deadline(DeadlineText, DeadLineDate);
-            ListOfDeadlines.Add(NewDeadline);
+            int counter = 0;
+            switch (counter)
+            {
+                case 0:
+                    Deadline Deadline1 = new Deadline(DeadlineText, DeadLineDate);
+                   DeadlinesList.Items.Add(Deadline1);
+                break;
+
+                case 1:
+                    Deadline Deadline2 = new Deadline(DeadlineText, DeadLineDate);
+                    DeadlinesList.Items.Add(Deadline2);
+                    break;
+                case 2:
+                    Deadline Deadline3 = new Deadline(DeadlineText, DeadLineDate);
+                    DeadlinesList.Items.Add(Deadline3);
+                    break;
+                case 3:
+                    Deadline Deadline4 = new Deadline(DeadlineText, DeadLineDate);
+                    DeadlinesList.Items.Add(Deadline4);
+                    break;
+                case 4:
+                    Deadline Deadline5 = new Deadline(DeadlineText, DeadLineDate);
+                    DeadlinesList.Items.Add(Deadline5);
+                    break;
+                default:
+                    MessageBox.Show("Everything in moderation :)");
+                    break;
+            }
         }
         public void CreateListOfTiles()
         {
@@ -174,8 +219,8 @@ namespace Mugen
     }
     public class Deadline : IComparable<Deadline>
     {
-        public TextBox DeadlineText { get; }
-        public DatePicker? DeadlineTime { get; }
+        TextBox DeadlineText { get; }
+        DatePicker? DeadlineTime { get; }
 
         public Deadline(TextBox _deadlineText, DatePicker? _deadlineTime)
         {
@@ -188,13 +233,22 @@ namespace Mugen
             return DeadlineText.Text + "\n" + (DeadlineTime?.SelectedDate?.ToString("dd.MM.yyyy") ?? "No date");
         }
 
-        int IComparable<Deadline>.CompareTo(Deadline other)
+        public int CompareTo(Deadline other)
         {
-            if (other == null || DeadlineTime?.SelectedDate == null || other.DeadlineTime?.SelectedDate == null)
+            Deadline dedek = (Deadline)(other);
+
+            if(this.DeadlineTime.SelectedDate.Value < dedek.DeadlineTime.SelectedDate.Value)
+            {
+                return -1;
+            }
+            else if (this.DeadlineTime.SelectedDate.Value > dedek.DeadlineTime.SelectedDate.Value)
+            {
+                return 1;
+            }
+            else
             {
                 return 0;
             }
-            return DeadlineTime.SelectedDate.Value.CompareTo(other.DeadlineTime.SelectedDate.Value);
         }
     }
 
