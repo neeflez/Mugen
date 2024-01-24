@@ -1,30 +1,16 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Shell;
+using Newtonsoft;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Mugen
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
-
     public partial class MainWindow : Window
     {
         private bool isSortedAscending = true;
@@ -37,18 +23,23 @@ namespace Mugen
         Tile Tile_6;
         int k = 0;
         public bool IsPlaceForTile = true;
-        List<Tile> ListOfTiles = new List<Tile>();
+        public List<Tile> ListOfTiles = new List<Tile>();
         public BindingList<Deadline> ListOfDeadlines = new BindingList<Deadline>();
+        public List<TileToJson> ListOfTilesToJson = new List<TileToJson>();
         int i = 0;
+
         public MainWindow()
         {
             InitializeComponent();
             CreateListOfTiles();
+            GetTilesFromJson();
         }
+
         private void grdHeader_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
+
         public void Add_Tile(object sender, RoutedEventArgs e)
         {
             IsPlaceForTile = true;
@@ -70,6 +61,7 @@ namespace Mugen
                 MessageBox.Show("Everything in moderation :)");
             }
         }
+
         public void Sort_deadline_list(object sender, RoutedEventArgs e)
         {
             List<Deadline> List_of_deadlines = new List<Deadline>(DeadlinesList.Items.Cast<Deadline>());
@@ -84,6 +76,7 @@ namespace Mugen
 
             isSortedAscending = !isSortedAscending;
         }
+
         private void BubbleSort(List<Deadline> list)
         {
             int n = list.Count;
@@ -148,6 +141,7 @@ namespace Mugen
             }
             counter++;
         }
+
         public void CreateListOfTiles()
         {
             Tile_1 = new Tile(Tile1, TaskText1, DescriptionText1, false, DateTime.Now);
@@ -163,6 +157,48 @@ namespace Mugen
             Tile_6 = new Tile(Tile6, TaskText6, DescriptionText6, false, DateTime.Now);
 
             ListOfTiles = new List<Tile> { Tile_1, Tile_2, Tile_3, Tile_4, Tile_5, Tile_6 };
+        }
+
+        public void SaveTilesToJsonFile(List<TileToJson> tiles, string filePath)
+        {
+            foreach (var item1 in ListOfTiles)
+            {
+                TileToJson tileToJson = new TileToJson();
+
+                tileToJson.DateCreationJson = item1.DateCreation;
+                tileToJson.DescriptionTextJson = item1.DescriptionText.Text;
+                tileToJson.TaskTextJson = item1.TaskText.Text;
+                tileToJson.IsUsedJson = item1.isUsed;
+
+                ListOfTilesToJson.Add(tileToJson);
+            }
+
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
+            string json = JsonConvert.SerializeObject(tiles, settings);
+
+            File.WriteAllText(filePath, json);
+
+            Console.WriteLine($"Plik JSON został zapisany pod ścieżką: {filePath}");
+        }
+        public void GetTilesFromJson()
+        {
+            string json = System.IO.File.ReadAllText(@"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Tiles");
+            List<TileToJson> ListOfTilesFromJson = JsonConvert.DeserializeObject<List<TileToJson>>(json);
+            for (int q = 0; q < ListOfTiles.Count; q++)
+            {
+                ListOfTiles[q].isUsed = ListOfTilesFromJson[q].IsUsedJson;
+                ListOfTiles[q].DescriptionText.Text = ListOfTilesFromJson[q].DescriptionTextJson;
+                ListOfTiles[q].TaskText.Text = ListOfTilesFromJson[q].TaskTextJson;
+                ListOfTiles[q].DateCreation = ListOfTilesFromJson[q].DateCreationJson;
+                if (ListOfTiles[q].isUsed == true)
+                {
+                    ListOfTiles[q].tile.Visibility = Visibility.Visible;
+                }
+            }
         }
 
         public void DeleteTile(object sender, RoutedEventArgs e)
@@ -191,9 +227,9 @@ namespace Mugen
             }
         }
 
-
         public void Shutdown_app(object sender, RoutedEventArgs e)
         {
+            SaveTilesToJsonFile(ListOfTilesToJson, @"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Tiles");
             Application.Current.Shutdown();
         }
         public void save_tiles_to_file()
@@ -201,17 +237,25 @@ namespace Mugen
             ListOfTiles.Sort();
         }
 
-       private void ListBoxItem_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        // Pobierz zaznaczony element
-        ListBoxItem selectedListBoxItem = (ListBoxItem)DeadlinesList.SelectedItem;
-
-        if (selectedListBoxItem != null)
+        private void ListBoxItem_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-                // Usuń zaznaczony element z ListBox
-                DeadlinesList.Items.Remove(selectedListBoxItem);
+            Deadline selectedDeadline = (Deadline)DeadlinesList.SelectedItem;
+
+            if (selectedDeadline != null)
+            {
+                int selectedIndex = DeadlinesList.Items.IndexOf(selectedDeadline);
+                if (selectedIndex != -1)
+                {
+                    List<Deadline> List_of_deadlines = new List<Deadline>(DeadlinesList.Items.Cast<Deadline>());
+                    DeadlinesList.Items.Clear();
+                    List_of_deadlines.RemoveAt(selectedIndex);
+                    foreach (var item in List_of_deadlines)
+                    {
+                        DeadlinesList.Items.Add(item);
+                    }
+                }
+            }
         }
-    }
     }
 
 
@@ -230,9 +274,15 @@ namespace Mugen
             this.isUsed = _isUsed;
             this.DateCreation = _dateCreation;
         }
-
-
     }
+    public class TileToJson
+    {
+        public DateTime DateCreationJson;
+        public bool IsUsedJson;
+        public string TaskTextJson;
+        public string DescriptionTextJson;
+    }
+
     public class Deadline : IComparable<Deadline>
     {
         TextBox DeadlineText { get; }
