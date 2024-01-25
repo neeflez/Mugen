@@ -492,7 +492,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0"  Margin="0">
                     <Border CornerRadius="12" >
-                        <Grid >
+                        <Grid>
                             <Grid x:Name="grdHeader2" PreviewMouseLeftButtonDown="grdHeader_PreviewMouseLeftButtonDown" IsHitTestVisible="True" Background="Transparent" Width="266" HorizontalAlignment="Left"></Grid>
                             <Button Style="{DynamicResource circlebutton}" Content="" 
                                     FontSize="10" Foreground="white" BorderThickness="0" 
@@ -504,21 +504,29 @@
                 <StackPanel Grid.Row="1"  Margin="10, 20, 10, 0">
                     <Border CornerRadius="12" Background="#0D1B2A" Height="80">
                         <Grid>
-                            <TextBlock Text="Timer Area" Foreground="White" 
+                            <TextBlock Text="00:00" Foreground="White"
+                                       x:Name="TimerText" FontSize="44" VerticalAlignment="Center" Margin="5 0 0 0"
                                        Padding="10"/>
+                            <Border Height="20" Width="50" Margin="0 -52 0 5" CornerRadius="0 12 0 6" Background="#2a9d8f" HorizontalAlignment="Right">
+                                <Button Style="{DynamicResource OneCornerRounded}" Content="start" FontSize="12" 
+                                        Foreground="white" BorderThickness="0" 
+                                        Height="20" Width="50" HorizontalAlignment="Center" 
+                                        Background="#2a9d8f" Click="StartCounter"
+                                        x:Name="StartStopTimer" VerticalAlignment="Top"/>
+                            </Border>
                         </Grid>
                     </Border>
                 </StackPanel>
                 <StackPanel Grid.Row="2"  Margin="10, 10, 10, 0">
-                    
+
                     <Border CornerRadius="12" Background="#0D1B2A" Height="250">
-                        
+
                         <Grid>
-                            <Border Height="20" Width="50" Margin="0 -221 0 5" CornerRadius="0 12 0 6" Background="#fb8500" HorizontalAlignment="Right">
+                            <Border Height="20" Width="50" Margin="0 -221 0 5" CornerRadius="0 12 0 6" Background="#4a5759" HorizontalAlignment="Right">
                                 <Button Style="{DynamicResource OneCornerRounded}" Content="sort" FontSize="12" 
                                         Foreground="white" BorderThickness="0" 
                                         Height="20" Width="50" HorizontalAlignment="Right" 
-                                        Background="#fb8500" Click="Sort_deadline_list"/>
+                                        Background="#4a5759" Click="Sort_deadline_list"/>
                             </Border>
                             <ListBox x:Name="DeadlinesList" Margin="10 20 10 10" MouseDoubleClick="ListBoxItem_DoubleClick" Background="Transparent" Foreground="White" BorderThickness="0" FontSize="14" d:ItemsSource="{d:SampleData ItemCount=5}" />
                         </Grid>
@@ -526,7 +534,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="3"  Margin="10, 10, 10, 0">
-                    
+
                     <Border CornerRadius="12" Background="#0D1B2A" Height="180">
                         <Grid>
                             <Grid Grid.Row="0" Height="130" VerticalAlignment="Top">
@@ -574,11 +582,11 @@
                                                 Click="Add_Deadline" />
                                     </Border>
                                 </Grid>
-                                
+
                             </Grid>
                         </Grid>
                     </Border>
-                    
+
                 </StackPanel>
             </Grid>
         </Grid>

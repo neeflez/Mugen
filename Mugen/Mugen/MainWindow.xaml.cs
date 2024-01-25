@@ -8,6 +8,9 @@ using System.Windows.Input;
 using Newtonsoft;
 using Newtonsoft.Json;
 using System.IO;
+using System.Net.NetworkInformation;
+using System.Timers;
+using System.Threading;
 
 namespace Mugen
 {
@@ -15,6 +18,9 @@ namespace Mugen
     {
         private bool isSortedAscending = true;
         int counter = 0;
+        private System.Timers.Timer timer;
+        private int m_counter;
+        private bool isTimerRunning = false;
         Tile Tile_1;
         Tile Tile_2;
         Tile Tile_3;
@@ -28,14 +34,58 @@ namespace Mugen
         public List<TileToJson> ListOfTilesToJson = new List<TileToJson>();
         public List<DeadlinesToJson> DeadlinesToJson = new List<DeadlinesToJson>();
         int i = 0;
-
         public MainWindow()
         {
             InitializeComponent();
             CreateListOfTiles();
             GetTilesFromJson();
             GetDeadlinesFromJson();
+            timer = new System.Timers.Timer();
+            timer.Interval = 1000;
+            timer.Elapsed += OnTimerElapsed;
         }
+        public void StartCounter(object sender, RoutedEventArgs e)
+        {
+            if (!isTimerRunning)
+            {
+                StartStopTimer.Content = "Stop";
+                isTimerRunning = true;
+                timer.Start();
+            }
+            else
+            {
+                StartStopTimer.Content = "Start";
+                isTimerRunning = false;
+                timer.Stop();
+            }
+
+        }
+
+        private void OnTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            m_counter++;
+            int minutes = m_counter / 60;
+            int seconds = m_counter % 60;
+
+            TimerText.Dispatcher.Invoke(() =>
+            {
+                TimerText.Text = $"{minutes:D2}:{seconds:D2}";
+            });
+
+            if (minutes == 45 && seconds == 1)
+            {
+                timer.Stop();
+                m_counter = 0;
+                TimerText.Dispatcher.Invoke(() =>
+                {
+                    TimerText.Text = "00:00";
+                    StartStopTimer.Content = "Start";
+                });
+                isTimerRunning = false;
+            }
+
+        }
+
 
         private void grdHeader_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -108,7 +158,6 @@ namespace Mugen
 
         public void Add_Deadline(object sender, RoutedEventArgs e)
         {
-            
             switch (counter)
             {
                 case 0:
@@ -146,9 +195,6 @@ namespace Mugen
                     MessageBox.Show("Everything in moderation :)");
                     break;
             }
-            
-            //List<Deadline> List_of_deadlines = new List<Deadline>(DeadlinesList.Items.Cast<Deadline>());
-            //SaveDeadlineListToJsonFile(List_of_deadlines, @"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Deadlines");
         }
 
         public void CreateListOfTiles()
@@ -209,7 +255,6 @@ namespace Mugen
                 tileToJson.IsUsedJson = item1.isUsed;
 
                 ListOfTilesToJson.Add(tileToJson);
-
             }
 
             var settings = new JsonSerializerSettings
