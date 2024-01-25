@@ -56,7 +56,7 @@ namespace Mugen
             else
             {
                 StartStopTimer.Content = "Start";
-                TimerTypeText.Text = "Focus";
+                TimerTypeText.Text = "Break";
                 isTimerRunning = false;
                 timer.Stop();
             }

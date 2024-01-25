@@ -17,3 +17,7 @@ C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\obj\Debug\Mugen.pdb
 C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\bin\Debug\Newtonsoft.Json.dll
 C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\bin\Debug\Newtonsoft.Json.xml
 C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\obj\Debug\Mugen.csproj.CopyComplete
+C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\bin\Debug\Mugen.exe.manifest
+C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\bin\Debug\Mugen.application
+C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\obj\Debug\Mugen.exe.manifest
+C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\obj\Debug\Mugen.application
