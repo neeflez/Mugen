@@ -97,23 +97,30 @@ namespace Mugen
 
         public void Add_Tile(object sender, RoutedEventArgs e)
         {
-            IsPlaceForTile = true;
-            for(int l = 0; l < ListOfTiles.Count; l++)
+            try
             {
-                if (ListOfTiles[l].isUsed == false)
+                IsPlaceForTile = true;
+                for (int l = 0; l < ListOfTiles.Count; l++)
                 {
-                    ListOfTiles[l].TaskText.Text = textInputTask.Text;
-                    ListOfTiles[l].DescriptionText.Text = textInputDescription.Text;
-                    ListOfTiles[l].DateCreation = DateTime.Now;
-                    ListOfTiles[l].tile.Visibility = Visibility.Visible;
-                    ListOfTiles[l].isUsed = true;
-                    IsPlaceForTile = false;
-                    break;
+                    if (ListOfTiles[l].isUsed == false)
+                    {
+                        ListOfTiles[l].TaskText.Text = textInputTask.Text;
+                        ListOfTiles[l].DescriptionText.Text = textInputDescription.Text;
+                        ListOfTiles[l].DateCreation = DateTime.Now;
+                        ListOfTiles[l].tile.Visibility = Visibility.Visible;
+                        ListOfTiles[l].isUsed = true;
+                        IsPlaceForTile = false;
+                        break;
+                    }
+                }
+                if (IsPlaceForTile)
+                {
+                    MessageBox.Show("Focus on your current goals :)");
                 }
             }
-            if (IsPlaceForTile)
+            catch (Exception ex)
             {
-                MessageBox.Show("Focus on your current goals :)");
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
 
