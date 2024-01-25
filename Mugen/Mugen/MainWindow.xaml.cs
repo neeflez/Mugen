@@ -49,12 +49,14 @@ namespace Mugen
             if (!isTimerRunning)
             {
                 StartStopTimer.Content = "Stop";
+                TimerTypeText.Text = "Focus";
                 isTimerRunning = true;
                 timer.Start();
             }
             else
             {
                 StartStopTimer.Content = "Start";
+                TimerTypeText.Text = "Focus";
                 isTimerRunning = false;
                 timer.Stop();
             }
@@ -80,6 +82,7 @@ namespace Mugen
                 {
                     TimerText.Text = "00:00";
                     StartStopTimer.Content = "Start";
+                    TimerTypeText.Text = "Focus";
                 });
                 isTimerRunning = false;
             }

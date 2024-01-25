@@ -476,7 +476,7 @@
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="1">
                         <Border CornerRadius="12" Background="#344e41" Width="62" Height="42" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 0 10">
-                            <Button Style="{DynamicResource ButtonStyle1}" Width="62" Height="42" Content=" + " Background="Transparent" Foreground="White" 
+                            <Button Style="{DynamicResource ButtonStyle1}" Width="62" Height="42" Content=" Add " Background="Transparent" Foreground="White" 
                             BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"
                             Click="Add_Tile" />
                         </Border>
@@ -506,7 +506,10 @@
                         <Grid>
                             <TextBlock Text="00:00" Foreground="White"
                                        x:Name="TimerText" FontSize="44" VerticalAlignment="Center" Margin="5 0 0 0"
-                                       Padding="10"/>
+                                       Padding="10" Width="150" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Break" Foreground="#E0E1DD"
+                                       x:Name="TimerTypeText" FontSize="22" Margin="5 0 0 0"
+                                       Padding="10" Width="80" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                             <Border Height="20" Width="50" Margin="0 -52 0 5" CornerRadius="0 12 0 6" Background="#2a9d8f" HorizontalAlignment="Right">
                                 <Button Style="{DynamicResource OneCornerRounded}" Content="start" FontSize="12" 
                                         Foreground="white" BorderThickness="0" 
