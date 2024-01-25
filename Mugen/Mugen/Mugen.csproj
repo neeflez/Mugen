@@ -92,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Deadline.cs" />
+    <Compile Include="DeadlinesToJson.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="TileToJson.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
