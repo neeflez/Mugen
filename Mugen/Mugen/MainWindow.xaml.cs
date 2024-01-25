@@ -171,10 +171,20 @@ namespace Mugen
         {
             foreach (var item1 in deadlines)
             {
+                
                 DeadlinesToJson deadlinesToJson = new DeadlinesToJson();
 
-                deadlinesToJson.DateCreationJson = item1.DeadlineTime.SelectedDate.Value;
-                deadlinesToJson.DeadlineText = item1.DeadlineText.Text;
+                    //TO DO: poprawic obsługe no date
+                    if (item1.DeadlineTime.SelectedDate.Value.ToString() == "No date")
+                    {
+                        deadlinesToJson.DateCreationJson = DateTime.Now;
+                    }
+                    else
+                    {
+                        deadlinesToJson.DateCreationJson = item1.DeadlineTime.SelectedDate.Value;
+                    }
+
+                    deadlinesToJson.DeadlineText = item1.DeadlineText.Text;
 
                 DeadlinesToJson.Add(deadlinesToJson);
             }
@@ -234,7 +244,7 @@ namespace Mugen
 
             for (int q = 0; q < ListOfDeadlinesFromJson.Count; q++)
             {
-                ListOfDeadlines.Add(new Deadline(DeadlineText,DeadLineDate));
+                ListOfDeadlines.Add(new Deadline(new TextBox(), new DatePicker()));
                 ListOfDeadlines[q].DeadlineText.Text = ListOfDeadlinesFromJson[q].DeadlineText;
                 ListOfDeadlines[q].DeadlineTime.SelectedDate = ListOfDeadlinesFromJson[q].DateCreationJson;
                 DeadlinesList.Items.Add(ListOfDeadlines[q]);
