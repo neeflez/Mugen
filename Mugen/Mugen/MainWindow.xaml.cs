@@ -26,6 +26,7 @@ namespace Mugen
         public List<Tile> ListOfTiles = new List<Tile>();
         public BindingList<Deadline> ListOfDeadlines = new BindingList<Deadline>();
         public List<TileToJson> ListOfTilesToJson = new List<TileToJson>();
+        public List<DeadlinesToJson> DeadlinesToJson = new List<DeadlinesToJson>();
         int i = 0;
 
         public MainWindow()
@@ -33,6 +34,7 @@ namespace Mugen
             InitializeComponent();
             CreateListOfTiles();
             GetTilesFromJson();
+            GetDeadlinesFromJson();
         }
 
         private void grdHeader_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -113,33 +115,40 @@ namespace Mugen
                     Deadline Deadline1 = new Deadline(new TextBox(), new DatePicker());
                     Deadline1.SetValues(DeadlineText, DeadLineDate);
                     DeadlinesList.Items.Add(Deadline1);
+                    counter++;
                     break;
 
                 case 1:
                     Deadline Deadline2 = new Deadline(new TextBox(), new DatePicker());
                     Deadline2.SetValues(DeadlineText, DeadLineDate);
                     DeadlinesList.Items.Add(Deadline2);
+                    counter++;
                     break;
                 case 2:
                     Deadline Deadline3 = new Deadline(new TextBox(), new DatePicker());
                     Deadline3.SetValues(DeadlineText, DeadLineDate);
                     DeadlinesList.Items.Add(Deadline3);
+                    counter++;
                     break;
                 case 3:
                     Deadline Deadline4 = new Deadline(new TextBox(), new DatePicker());
                     Deadline4.SetValues(DeadlineText, DeadLineDate);
                     DeadlinesList.Items.Add(Deadline4);
+                    counter++;
                     break;
                 case 4:
                     Deadline Deadline5 = new Deadline(new TextBox(), new DatePicker());
                     Deadline5.SetValues(DeadlineText, DeadLineDate);
                     DeadlinesList.Items.Add(Deadline5);
+                    counter++;
                     break;
                 default:
                     MessageBox.Show("Everything in moderation :)");
                     break;
             }
-            counter++;
+            
+            //List<Deadline> List_of_deadlines = new List<Deadline>(DeadlinesList.Items.Cast<Deadline>());
+            //SaveDeadlineListToJsonFile(List_of_deadlines, @"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Deadlines");
         }
 
         public void CreateListOfTiles()
@@ -158,6 +167,25 @@ namespace Mugen
 
             ListOfTiles = new List<Tile> { Tile_1, Tile_2, Tile_3, Tile_4, Tile_5, Tile_6 };
         }
+        public void SaveDeadlineListToJsonFile(List<Deadline> deadlines, string filePath)
+        {
+            foreach (var item1 in deadlines)
+            {
+                DeadlinesToJson deadlinesToJson = new DeadlinesToJson();
+
+                deadlinesToJson.DateCreationJson = item1.DeadlineTime.SelectedDate.Value;
+                deadlinesToJson.DeadlineText = item1.DeadlineText.Text;
+
+                DeadlinesToJson.Add(deadlinesToJson);
+            }
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
+            string json = JsonConvert.SerializeObject(DeadlinesToJson, settings);
+            File.WriteAllText(filePath, json);
+        }
 
         public void SaveTilesToJsonFile(List<TileToJson> tiles, string filePath)
         {
@@ -171,6 +199,7 @@ namespace Mugen
                 tileToJson.IsUsedJson = item1.isUsed;
 
                 ListOfTilesToJson.Add(tileToJson);
+
             }
 
             var settings = new JsonSerializerSettings
@@ -181,8 +210,6 @@ namespace Mugen
             string json = JsonConvert.SerializeObject(tiles, settings);
 
             File.WriteAllText(filePath, json);
-
-            Console.WriteLine($"Plik JSON został zapisany pod ścieżką: {filePath}");
         }
         public void GetTilesFromJson()
         {
@@ -193,12 +220,26 @@ namespace Mugen
                 ListOfTiles[q].isUsed = ListOfTilesFromJson[q].IsUsedJson;
                 ListOfTiles[q].DescriptionText.Text = ListOfTilesFromJson[q].DescriptionTextJson;
                 ListOfTiles[q].TaskText.Text = ListOfTilesFromJson[q].TaskTextJson;
-                ListOfTiles[q].DateCreation = ListOfTilesFromJson[q].DateCreationJson;
+                ListOfTiles[q].DateCreation = ListOfTilesFromJson[q].DateCreationJson; 
                 if (ListOfTiles[q].isUsed == true)
                 {
                     ListOfTiles[q].tile.Visibility = Visibility.Visible;
                 }
             }
+        }
+        public void GetDeadlinesFromJson()
+        {
+            string json = System.IO.File.ReadAllText(@"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Deadlines");
+            List<DeadlinesToJson> ListOfDeadlinesFromJson = JsonConvert.DeserializeObject<List<DeadlinesToJson>>(json);
+
+            for (int q = 0; q < ListOfDeadlinesFromJson.Count; q++)
+            {
+                ListOfDeadlines.Add(new Deadline(DeadlineText,DeadLineDate));
+                ListOfDeadlines[q].DeadlineText.Text = ListOfDeadlinesFromJson[q].DeadlineText;
+                ListOfDeadlines[q].DeadlineTime.SelectedDate = ListOfDeadlinesFromJson[q].DateCreationJson;
+                DeadlinesList.Items.Add(ListOfDeadlines[q]);
+            }
+            counter = DeadlinesList.Items.Count;
         }
 
         public void DeleteTile(object sender, RoutedEventArgs e)
@@ -230,6 +271,8 @@ namespace Mugen
         public void Shutdown_app(object sender, RoutedEventArgs e)
         {
             SaveTilesToJsonFile(ListOfTilesToJson, @"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Tiles");
+            List<Deadline> List_of_deadlines = new List<Deadline>(DeadlinesList.Items.Cast<Deadline>());
+            SaveDeadlineListToJsonFile(List_of_deadlines, @"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Deadlines");
             Application.Current.Shutdown();
         }
         public void save_tiles_to_file()
@@ -253,6 +296,8 @@ namespace Mugen
                     {
                         DeadlinesList.Items.Add(item);
                     }
+                    counter--;
+                    
                 }
             }
         }
@@ -282,11 +327,16 @@ namespace Mugen
         public string TaskTextJson;
         public string DescriptionTextJson;
     }
-
-    public class Deadline : IComparable<Deadline>
+    public class DeadlinesToJson
     {
-        TextBox DeadlineText { get; }
-        DatePicker? DeadlineTime { get; }
+        public string DeadlineText;
+        public DateTime DateCreationJson;
+    }
+
+    public class Deadline : IComparable<Deadline>, ICloneable<Deadline>
+    {
+        public TextBox DeadlineText { get; }
+        public DatePicker? DeadlineTime { get; }
 
         public Deadline(TextBox _deadlineText, DatePicker? _deadlineTime)
         {
@@ -327,10 +377,15 @@ namespace Mugen
             this.DeadlineText.Text = deadlineText.Text;
             this.DeadlineTime.SelectedDate = deadlineTime?.SelectedDate;
         }
+
+        public Deadline Clone()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-
-
-
-
+    internal interface ICloneable<T>
+    {
+        T Clone();
+    }
 }
