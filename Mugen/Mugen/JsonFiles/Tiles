@@ -12,7 +12,7 @@
     "DescriptionTextJson": "Testy statystyczne"
   },
   {
-    "DateCreationJson": "2024-01-25T17:03:18.5604666+01:00",
+    "DateCreationJson": "2024-01-25T19:24:56.9911367+01:00",
     "IsUsedJson": true,
     "TaskTextJson": "Finanse",
     "DescriptionTextJson": "Bilans"
@@ -24,15 +24,15 @@
     "DescriptionTextJson": "Schema + DTD"
   },
   {
-    "DateCreationJson": "2024-01-25T17:05:15.2065512+01:00",
-    "IsUsedJson": true,
-    "TaskTextJson": "Zakupy",
-    "DescriptionTextJson": ""
-  },
-  {
-    "DateCreationJson": "2024-01-25T18:42:41.9192064+01:00",
+    "DateCreationJson": "2024-01-25T19:27:38.4293836+01:00",
     "IsUsedJson": false,
     "TaskTextJson": "Task",
-    "DescriptionTextJson": "f \\n dsadsa \\n"
+    "DescriptionTextJson": "Description"
+  },
+  {
+    "DateCreationJson": "2024-01-25T19:27:38.587407+01:00",
+    "IsUsedJson": false,
+    "TaskTextJson": "Task",
+    "DescriptionTextJson": "Description"
   }
 ]

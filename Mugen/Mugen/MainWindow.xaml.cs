@@ -19,7 +19,7 @@ namespace Mugen
         private bool isSortedAscending = true;
         int counter = 0;
         private System.Timers.Timer timer;
-        private int m_counter;
+        private int m_counter = 2700;
         private bool isTimerRunning = false;
         Tile Tile_1;
         Tile Tile_2;
@@ -65,7 +65,7 @@ namespace Mugen
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            m_counter++;
+            m_counter--;
             int minutes = m_counter / 60;
             int seconds = m_counter % 60;
 
@@ -74,13 +74,13 @@ namespace Mugen
                 TimerText.Text = $"{minutes:D2}:{seconds:D2}";
             });
 
-            if (minutes == 45 && seconds == 1)
+            if (minutes == 0 && seconds == 0)
             {
                 timer.Stop();
-                m_counter = 0;
+                m_counter = 2700;
                 TimerText.Dispatcher.Invoke(() =>
                 {
-                    TimerText.Text = "00:00";
+                    TimerText.Text = "45:00";
                     StartStopTimer.Content = "Start";
                     TimerTypeText.Text = "Focus";
                 });
@@ -113,7 +113,7 @@ namespace Mugen
             }
             if (IsPlaceForTile)
             {
-                MessageBox.Show("Everything in moderation :)");
+                MessageBox.Show("Focus on your current goals :)");
             }
         }
 
@@ -195,7 +195,7 @@ namespace Mugen
                     counter++;
                     break;
                 default:
-                    MessageBox.Show("Everything in moderation :)");
+                    MessageBox.Show("Focus on your current goals :)");
                     break;
             }
         }

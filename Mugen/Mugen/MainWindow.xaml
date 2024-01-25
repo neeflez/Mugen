@@ -504,7 +504,7 @@
                 <StackPanel Grid.Row="1"  Margin="10, 20, 10, 0">
                     <Border CornerRadius="12" Background="#0D1B2A" Height="80">
                         <Grid>
-                            <TextBlock Text="00:00" Foreground="White"
+                            <TextBlock Text="45:00" Foreground="White"
                                        x:Name="TimerText" FontSize="44" VerticalAlignment="Center" Margin="5 0 0 0"
                                        Padding="10" Width="150" HorizontalAlignment="Left"/>
                             <TextBlock Text="Break" Foreground="#E0E1DD"
