@@ -34,6 +34,11 @@ namespace Mugen
         public List<TileToJson> ListOfTilesToJson = new List<TileToJson>();
         public List<DeadlinesToJson> DeadlinesToJson = new List<DeadlinesToJson>();
         int i = 0;
+        static string relativePath1 = Path.Combine("JsonFiles", "Tiles");
+        public string TilesPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().Length - 12), relativePath1));
+        static string relativePath2 = Path.Combine("JsonFiles", "Deadlines");
+        public string DeadlinesPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory().Substring(0, Directory.GetCurrentDirectory().Length - 12), relativePath2));
+
         public MainWindow()
         {
             InitializeComponent();
@@ -104,13 +109,13 @@ namespace Mugen
                 {
                     if (ListOfTiles[l].isUsed == false)
                     {
-                        ListOfTiles[l].TaskText.Text = textInputTask.Text;
-                        ListOfTiles[l].DescriptionText.Text = textInputDescription.Text;
-                        ListOfTiles[l].DateCreation = DateTime.Now;
-                        ListOfTiles[l].tile.Visibility = Visibility.Visible;
-                        ListOfTiles[l].isUsed = true;
-                        IsPlaceForTile = false;
-                        break;
+                            ListOfTiles[l].TaskText.Text = textInputTask.Text;
+                            ListOfTiles[l].DescriptionText.Text = textInputDescription.Text;
+                            ListOfTiles[l].DateCreation = DateTime.Now;
+                            ListOfTiles[l].tile.Visibility = Visibility.Visible;
+                            ListOfTiles[l].isUsed = true;
+                            IsPlaceForTile = false;
+                            break;
                     }
                 }
                 if (IsPlaceForTile)
@@ -278,7 +283,8 @@ namespace Mugen
         }
         public void GetTilesFromJson()
         {
-            string json = System.IO.File.ReadAllText(@"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Tiles");
+            string json = System.IO.File.ReadAllText(TilesPath);
+            
             List<TileToJson> ListOfTilesFromJson = JsonConvert.DeserializeObject<List<TileToJson>>(json);
             for (int q = 0; q < ListOfTiles.Count; q++)
             {
@@ -294,7 +300,10 @@ namespace Mugen
         }
         public void GetDeadlinesFromJson()
         {
-            string json = System.IO.File.ReadAllText(@"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Deadlines");
+            
+            
+            string json = System.IO.File.ReadAllText(DeadlinesPath);
+
             List<DeadlinesToJson> ListOfDeadlinesFromJson = JsonConvert.DeserializeObject<List<DeadlinesToJson>>(json);
 
             for (int q = 0; q < ListOfDeadlinesFromJson.Count; q++)
@@ -335,9 +344,10 @@ namespace Mugen
 
         public void Shutdown_app(object sender, RoutedEventArgs e)
         {
-            SaveTilesToJsonFile(ListOfTilesToJson, @"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Tiles");
+
+            SaveTilesToJsonFile(ListOfTilesToJson, TilesPath);
             List<Deadline> List_of_deadlines = new List<Deadline>(DeadlinesList.Items.Cast<Deadline>());
-            SaveDeadlineListToJsonFile(List_of_deadlines, @"C:\Users\neeflez\Desktop\Mugen\Mugen\Mugen\JsonFiles\Deadlines");
+            SaveDeadlineListToJsonFile(List_of_deadlines, DeadlinesPath);
             Application.Current.Shutdown();
         }
         public void save_tiles_to_file()

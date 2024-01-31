@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Mugen.exe" size="147952">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Mugen.exe" size="148464">
       <assemblyIdentity name="Mugen" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kaVxBOQGZXOiBjwdvqJ68meLjncC2d8kXe6TpJuydho=</dsig:DigestValue>
+        <dsig:DigestValue>vLwsuQUZWXSOtw/L5jU0TDMGM5PMMmCelBt8torJglU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
