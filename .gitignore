@@ -1,0 +1,44 @@
+# Visual Studio / .NET build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ll]og/
+publish/
+app.publish/
+
+# Visual Studio cache and user-specific files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Signing keys and certificates
+*.pfx
+*.snk
+*.p12
+
+# NuGet (packages.config packages are committed in Mugen/packages/)
+*.nupkg.metadata
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+# Tooling
+*.cache
+*.log
+*.vspscc
+*.vssscc
+_ReSharper*/
+*.DotSettings.user
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
